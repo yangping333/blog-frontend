@@ -1,0 +1,45 @@
+import request from '@/utils/request'
+
+// 文章列表查询
+export const getArticleList = (params) => {
+  return request({
+    url: '/articles/select',
+    method: 'get',
+    params,
+  })
+}
+
+// 根据 ID 查询文章
+export const getArticleById = (id) => {
+  return request({
+    url: `/articles/${id}`,
+    method: 'get',
+  })
+}
+
+// 添加文章
+export const addArticle = (data) => {
+  return request({
+    url: '/articles',
+    method: 'post',
+    data,
+  })
+}
+
+// 修改文章
+export const updateArticle = (data) => {
+  return request({
+    url: '/articles',
+    method: 'put',
+    data,
+  })
+}
+
+// 删除文章
+export const deleteArticles = (ids) => {
+  return request({
+    url: `/articles/${ids}`,
+    method: 'delete',
+  })
+}
+
