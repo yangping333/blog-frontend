@@ -3,13 +3,8 @@
     <div class="home-container">
       <div class="container">
         <div class="search-bar">
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="搜索文章..."
-            @keyup.enter="handleSearch"
-          />
-          <button @click="handleSearch">搜索</button>
+          <input v-model="searchQuery" type="text" placeholder="搜索文章、用户..." @keyup.enter="goToSearch" />
+          <button @click="goToSearch">搜索</button>
         </div>
 
         <div class="content">
@@ -63,6 +58,16 @@ const searchQuery = ref('')
 const currentPage = ref(1)
 const pageSize = ref(10)
 const total = ref(0)
+
+// 添加搜索跳转方法
+const goToSearch = () => {
+  if (searchQuery.value.trim()) {
+    router.push({
+      path: '/search',
+      query: { q: searchQuery.value.trim() }
+    })
+  }
+}
 
 const loadArticles = async () => {
   loading.value = true
@@ -276,4 +281,3 @@ onMounted(() => {
   background: #66b1ff;
 }
 </style>
-
